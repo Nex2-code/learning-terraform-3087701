@@ -7,5 +7,5 @@ terraform {
 }
 provider "google" {
   project = "idyllic-silo-382421"
-  region  = "asia-south1"
+  region  = "us-central1"
 }
