@@ -1,24 +1,23 @@
-data "aws_ami" "app_ami" {
-  most_recent = true
+resource "google_compute_instance" "test" {
+  name         = "test-instance"
+  machine_type = "n1-standard-1"
+  zone         = "us-central1-a"
 
-  filter {
-    name   = "name"
-    values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-10"
+    }
   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+  network_interface {
+    network = "default"
+    access_config {
+    }
   }
 
-  owners = ["979382823631"] # Bitnami
-}
-
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.app_ami.id
-  instance_type = "t3.nano"
-
-  tags = {
-    Name = "HelloWorld"
+  metadata = {
+    foo = "bar"
   }
+
+  tags = ["web", "dev"]
 }

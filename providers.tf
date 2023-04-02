@@ -1,11 +1,11 @@
 terraform {
   required_providers {
-    aws = {
+    google = {
       source  = "hashicorp/aws"
     }
   }
 }
-
-provider "aws" {
-  region  = "us-west-2"
+provider "google" {
+  project = "your-project-id"
+  region  = "us-central1"
 }
